@@ -169,7 +169,11 @@ class _ProfileHeader extends StatelessWidget {
                     shape: BoxShape.circle,
                     color: Color(0xFF66BB6A),
                   ),
-                  child: const Icon(Icons.circle, size: 10, color: Colors.white),
+                  child: const Icon(
+                    Icons.circle,
+                    size: 10,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ],
@@ -180,7 +184,7 @@ class _ProfileHeader extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'John Doe',
+                  'Keerthivasan',
                   style: GoogleFonts.poppins(
                     fontSize: isSmall ? 18 : 20,
                     fontWeight: FontWeight.w700,
@@ -189,7 +193,7 @@ class _ProfileHeader extends StatelessWidget {
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  'john@example.com',
+                  'Kee@example.com',
                   style: GoogleFonts.poppins(
                     fontSize: isSmall ? 12 : 13,
                     color: AppTheme.textMuted,
@@ -244,8 +248,7 @@ class _ProfileStat extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           color: AppTheme.cardDark,
-          border:
-              Border.all(color: AppTheme.secondary.withValues(alpha: 0.1)),
+          border: Border.all(color: AppTheme.secondary.withValues(alpha: 0.1)),
         ),
         child: Column(
           children: [
@@ -320,17 +323,19 @@ class _MenuCard extends StatelessWidget {
         children: items
             .asMap()
             .entries
-            .map((e) => Column(
-                  children: [
-                    _MenuItemWidget(item: e.value),
-                    if (e.key < items.length - 1)
-                      Divider(
-                        height: 1,
-                        color: AppTheme.secondary.withValues(alpha: 0.08),
-                        indent: 60,
-                      ),
-                  ],
-                ))
+            .map(
+              (e) => Column(
+                children: [
+                  _MenuItemWidget(item: e.value),
+                  if (e.key < items.length - 1)
+                    Divider(
+                      height: 1,
+                      color: AppTheme.secondary.withValues(alpha: 0.08),
+                      indent: 60,
+                    ),
+                ],
+              ),
+            )
             .toList(),
       ),
     );

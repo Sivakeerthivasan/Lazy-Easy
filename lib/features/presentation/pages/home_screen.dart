@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lazy_easy/core/app_theme.dart';
+import 'package:lazy_easy/features/presentation/pages/tabs/collab_tab.dart';
 import 'package:lazy_easy/features/presentation/pages/tabs/home_tab.dart';
 import 'package:lazy_easy/features/presentation/pages/tabs/streaks_tab.dart';
 import 'package:lazy_easy/features/presentation/pages/tabs/history_tab.dart';
@@ -13,8 +14,7 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen>
-    with TickerProviderStateMixin {
+class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   int _currentIndex = 0;
 
   late final AnimationController _fadeController;
@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen>
   late final AnimationController _bounceController;
   late final Animation<double> _bounceAnim;
 
-  static const _titles = ['Home', 'Streaks', 'History', 'Profile'];
+  static const _titles = ['Home', 'Collab', 'Streaks', 'History', 'Profile'];
 
   @override
   void initState() {
@@ -64,10 +64,12 @@ class _HomeScreenState extends State<HomeScreen>
       case 0:
         return const HomeTab();
       case 1:
-        return const StreaksTab();
+        return const CollabTab();
       case 2:
-        return const HistoryTab();
+        return const StreaksTab();
       case 3:
+        return const HistoryTab();
+      case 4:
         return const ProfileTab();
       default:
         return const HomeTab();
@@ -87,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen>
           return Transform.translate(
             offset: Offset(0, _bounceAnim.value),
             child: GestureDetector(
-              onTap: () => _onTabTapped(1),
+              onTap: () => _onTabTapped(2),
               child: Container(
                 height: 72,
                 width: 72,
@@ -132,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen>
         color: const Color(0xFF160028),
         elevation: 0,
         padding: EdgeInsets.zero,
-        height: 70,
+        height: 60,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -143,6 +145,11 @@ class _HomeScreenState extends State<HomeScreen>
                   icon: Icons.home_rounded,
                   isSelected: _currentIndex == 0,
                   onTap: () => _onTabTapped(0),
+                ),
+                _NavButton(
+                  icon: Icons.run_circle,
+                  isSelected: _currentIndex == 1,
+                  onTap: () => _onTabTapped(1),
                 ),
                 SizedBox(width: mq.size.width * 0.05),
               ],
@@ -155,13 +162,13 @@ class _HomeScreenState extends State<HomeScreen>
                 SizedBox(width: mq.size.width * 0.05),
                 _NavButton(
                   icon: Icons.history_rounded,
-                  isSelected: _currentIndex == 2,
-                  onTap: () => _onTabTapped(2),
+                  isSelected: _currentIndex == 3,
+                  onTap: () => _onTabTapped(3),
                 ),
                 _NavButton(
                   icon: Icons.person_rounded,
-                  isSelected: _currentIndex == 3,
-                  onTap: () => _onTabTapped(3),
+                  isSelected: _currentIndex == 4,
+                  onTap: () => _onTabTapped(4),
                 ),
               ],
             ),
@@ -215,7 +222,9 @@ class _NavButton extends StatelessWidget {
       icon: Icon(
         icon,
         size: 32,
-        color: isSelected ? AppTheme.primaryColor : AppTheme.textMuted.withValues(alpha: 0.5),
+        color: isSelected
+            ? AppTheme.primaryColor
+            : AppTheme.textMuted.withValues(alpha: 0.5),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 16),
       constraints: const BoxConstraints(),
@@ -254,7 +263,11 @@ class _AppBar extends StatelessWidget {
                 ),
               ],
             ),
-            child: const Icon(Icons.bolt_rounded, size: 20, color: Colors.white),
+            child: const Icon(
+              Icons.bolt_rounded,
+              size: 20,
+              color: Colors.white,
+            ),
           ),
           const SizedBox(width: 10),
           Text(
