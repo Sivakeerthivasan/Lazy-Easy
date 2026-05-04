@@ -453,7 +453,7 @@ class _SignOutButton extends StatelessWidget {
               ),
             ),
           ),
-          ElevatedButton(
+          TextButton(
             onPressed: () {
               Navigator.of(ctx).pop();
               context.goNamed('signIn');

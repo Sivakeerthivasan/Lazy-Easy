@@ -12,10 +12,10 @@ class HomeTab extends StatefulWidget {
 
 class _HomeTabState extends State<HomeTab> {
   final List<String> _quotes = [
-    "Dream big, start small. ✨",
-    "Small steps every day. 🚶",
+    "Dream big, start small.",
+    "Small steps every day.",
     "You are capable of amazing things.",
-    "Make today count. 🎯",
+    "Make today count.",
     "Don't stop until you're proud.",
   ];
   int _currentQuoteIndex = 0;
@@ -78,7 +78,7 @@ class _HomeTabState extends State<HomeTab> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Good Morning! 👋',
+                            'Good Morning!',
                             style: GoogleFonts.poppins(
                               fontSize: isSmall ? 13 : 14,
                               color: AppTheme.textMuted,
@@ -88,9 +88,13 @@ class _HomeTabState extends State<HomeTab> {
                           // Motivation Quote Carousel
                           AnimatedSwitcher(
                             duration: const Duration(milliseconds: 800),
-                            transitionBuilder: (Widget child, Animation<double> animation) {
-                              return FadeTransition(opacity: animation, child: child);
-                            },
+                            transitionBuilder:
+                                (Widget child, Animation<double> animation) {
+                                  return FadeTransition(
+                                    opacity: animation,
+                                    child: child,
+                                  );
+                                },
                             child: Text(
                               _quotes[_currentQuoteIndex],
                               key: ValueKey<int>(_currentQuoteIndex),
@@ -186,7 +190,7 @@ class _HomeTabState extends State<HomeTab> {
             ],
           ),
         ),
-        
+
         // Sticky Header when Scrolled Down
         AnimatedPositioned(
           duration: const Duration(milliseconds: 300),
@@ -197,20 +201,26 @@ class _HomeTabState extends State<HomeTab> {
           child: Container(
             padding: const EdgeInsets.symmetric(vertical: 16),
             decoration: BoxDecoration(
-               color: AppTheme.primaryDark.withValues(alpha: 0.95),
-               borderRadius: const BorderRadius.vertical(bottom: Radius.circular(20)),
-               boxShadow: [
-                 BoxShadow(
-                   color: AppTheme.primaryColor.withValues(alpha: 0.3),
-                   blurRadius: 15,
-                   spreadRadius: 2,
-                 ),
-               ],
+              color: AppTheme.primaryDark.withValues(alpha: 0.95),
+              borderRadius: const BorderRadius.vertical(
+                bottom: Radius.circular(20),
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: AppTheme.primaryColor.withValues(alpha: 0.3),
+                  blurRadius: 15,
+                  spreadRadius: 2,
+                ),
+              ],
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(Icons.favorite_rounded, color: Colors.white, size: 20),
+                const Icon(
+                  Icons.favorite_rounded,
+                  color: Colors.white,
+                  size: 20,
+                ),
                 const SizedBox(width: 12),
                 Text(
                   "Don't quit! You got this. 🔥",
@@ -230,19 +240,49 @@ class _HomeTabState extends State<HomeTab> {
 
   List<Widget> _buildTaskList(bool isSmall) {
     final tasks = [
-      _TaskData('Morning meditation', '10 min', Icons.self_improvement_rounded,
-          const Color(0xFFAB47BC), true),
-      _TaskData('Read 20 pages', '20 min', Icons.menu_book_rounded,
-          const Color(0xFF42A5F5), false),
-      _TaskData('Exercise', '30 min', Icons.fitness_center_rounded,
-          const Color(0xFFFF7043), false),
-      _TaskData('Journal entry', '15 min', Icons.edit_note_rounded,
-          const Color(0xFF66BB6A), false),
+      _TaskData(
+        'Morning meditation',
+        '10 min',
+        Icons.self_improvement_rounded,
+        const Color(0xFFAB47BC),
+        true,
+      ),
+      _TaskData(
+        'Read 20 pages',
+        '20 min',
+        Icons.menu_book_rounded,
+        const Color(0xFF42A5F5),
+        false,
+      ),
+      _TaskData(
+        'Exercise',
+        '30 min',
+        Icons.fitness_center_rounded,
+        const Color(0xFFFF7043),
+        false,
+      ),
+      _TaskData(
+        'Journal entry',
+        '15 min',
+        Icons.edit_note_rounded,
+        const Color(0xFF66BB6A),
+        false,
+      ),
       // Adding extra tasks so scroll works
-      _TaskData('Hydrate well', '3 min', Icons.water_drop_rounded,
-          const Color(0xFF29B6F6), false),
-      _TaskData('Stretch legs', '5 min', Icons.accessibility_new_rounded,
-          const Color(0xFFF06292), false),
+      _TaskData(
+        'Hydrate well',
+        '3 min',
+        Icons.water_drop_rounded,
+        const Color(0xFF29B6F6),
+        false,
+      ),
+      _TaskData(
+        'Stretch legs',
+        '5 min',
+        Icons.accessibility_new_rounded,
+        const Color(0xFFF06292),
+        false,
+      ),
     ];
 
     return tasks
@@ -304,9 +344,7 @@ class _TaskCard extends StatelessWidget {
                   style: GoogleFonts.poppins(
                     fontSize: isSmall ? 13 : 14,
                     fontWeight: FontWeight.w500,
-                    color: task.done
-                        ? AppTheme.textMuted
-                        : AppTheme.onPrimary,
+                    color: task.done ? AppTheme.textMuted : AppTheme.onPrimary,
                     decoration: task.done
                         ? TextDecoration.lineThrough
                         : TextDecoration.none,
@@ -367,9 +405,7 @@ class _StatCard extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         color: AppTheme.cardDark,
-        border: Border.all(
-          color: AppTheme.secondary.withValues(alpha: 0.1),
-        ),
+        border: Border.all(color: AppTheme.secondary.withValues(alpha: 0.1)),
       ),
       child: Column(
         children: [
@@ -385,10 +421,7 @@ class _StatCard extends StatelessWidget {
           ),
           Text(
             label,
-            style: GoogleFonts.poppins(
-              fontSize: 10,
-              color: AppTheme.textMuted,
-            ),
+            style: GoogleFonts.poppins(fontSize: 10, color: AppTheme.textMuted),
             textAlign: TextAlign.center,
           ),
         ],
