@@ -243,7 +243,7 @@ class _SignInScreenState extends State<SignInScreen>
                             Align(
                               alignment: Alignment.centerRight,
                               child: TextButton(
-                                onPressed: () {},
+                                onPressed: () => context.pushNamed('forgotPassword'),
                                 child: Text(
                                   'Forgot Password?',
                                   style: GoogleFonts.poppins(

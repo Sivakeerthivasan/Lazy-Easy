@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lazy_easy/core/app_theme.dart';
 import 'package:lazy_easy/features/presentation/pages/tabs/collab_tab.dart';
@@ -302,20 +303,44 @@ class _AppBar extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 8),
-          Container(
-            width: 38,
-            height: 38,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: AppTheme.cardDark.withValues(alpha: 0.6),
-              border: Border.all(
-                color: AppTheme.secondary.withValues(alpha: 0.2),
+          GestureDetector(
+            onTap: () => context.pushNamed('notifications'),
+            child: Container(
+              width: 38,
+              height: 38,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: AppTheme.cardDark.withValues(alpha: 0.6),
+                border: Border.all(
+                  color: AppTheme.secondary.withValues(alpha: 0.2),
+                ),
               ),
-            ),
-            child: const Icon(
-              Icons.notifications_outlined,
-              color: AppTheme.secondary,
-              size: 20,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  const Icon(
+                    Icons.notifications_outlined,
+                    color: AppTheme.secondary,
+                    size: 20,
+                  ),
+                  Positioned(
+                    right: 6,
+                    top: 6,
+                    child: Container(
+                      width: 9,
+                      height: 9,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: const Color(0xFFFF5252),
+                        border: Border.all(
+                          color: AppTheme.backgroundDark,
+                          width: 1.5,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],

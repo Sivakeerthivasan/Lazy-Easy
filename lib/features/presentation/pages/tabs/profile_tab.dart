@@ -84,6 +84,7 @@ class ProfileTab extends StatelessWidget {
                 Icons.info_outline_rounded,
                 'About Lazy Easy',
                 AppTheme.secondary,
+                onTap: () => context.pushNamed('about'),
               ),
             ],
           ),
@@ -304,7 +305,8 @@ class _MenuItem {
   final IconData icon;
   final String label;
   final Color color;
-  _MenuItem(this.icon, this.label, this.color);
+  final VoidCallback? onTap;
+  _MenuItem(this.icon, this.label, this.color, {this.onTap});
 }
 
 class _MenuCard extends StatelessWidget {
@@ -352,7 +354,7 @@ class _MenuItemWidget extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         borderRadius: BorderRadius.circular(20),
-        onTap: () {},
+        onTap: item.onTap ?? () {},
         splashColor: AppTheme.primaryColor.withValues(alpha: 0.1),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
